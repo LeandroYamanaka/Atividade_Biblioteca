@@ -1,0 +1,59 @@
+@model List<Usuario>
+@{
+
+    ViewData["Title"] = "Lista de Usuários";
+}
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline" method="POST">
+            <div class="form-group mb-2">
+                <select name="TipoFiltro" class="form-control">
+                    <option value="Nome">Nome</option>
+                    <option value="Email">Email</option>
+                </select>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Nascimento</th>
+                    <th>Login</th>
+                    <th>Nivel</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Usuario u in Model)
+
+                {
+                    <tr>
+                        <td>@u.IdUsuario</td>
+                        <td>@u.Nome</td>
+                        <td>@u.Telefone</td>
+                        <td>@u.Email</td>
+                        <td>@u.Nascimento</td>
+                        <td>@u.Login</td>
+                        <td>@u.Nivel</td>
+                        <td><a href="/Usuario/Editar?IdUsuario=@u.IdUsuario">Editar</a></td>
+                        <td><a href="/Usuario/Excluir?IdUsuario=@u.IdUsuario">Excluir</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
